@@ -9,9 +9,14 @@ jobs:
       with:
         github-token: ${{ secrets.PAT_TOKEN }}
         script: |
-          await github.rest.actions.createWorkflowDispatch({
+          const result = await github.rest.actions.createWorkflowDispatch({
             owner: 'anas-sabir',
             repo: 'repository-dispach-client',
             workflow_id: 'test.yml',
             ref: 'main'
+            inputs: {
+              backUrl: https://api.teamsta.dev
+              frontUrl: https://api.teamsta.dev
+            }
           })
+          console.log(result);
